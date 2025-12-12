@@ -2,19 +2,83 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Degotchi Web (Landing Page)
 
-This contains everything you need to run your app locally.
+Degotchi’s marketing/landing site (mobile-first). It communicates the core narrative: **AI agents + human-in-the-loop biometric approval + Solana-native UX**, with a clean sectioned layout.
 
-View your app in AI Studio: https://ai.studio/apps/drive/13GvSYKuwgT40E7KiFiCuzjQgtqyk33El
+## Sections
 
-## Run Locally
+- **Hero**: headline + value badges + dual CTAs
+- **Terminal**: simulated live logs (vibe + narrative bridge)
+- **Story**: narrative + key highlights
+- **How it works**: human-in-the-loop flow
+- **Features**: Brain / Body / Leash + capability list
+- **Moat**: security/UX/distribution loop
+- **Roadmap**: phased milestones
+- **FAQ**: common questions
+- **CTA**: early access entry (wire to form/community/email)
 
-**Prerequisites:**  Node.js
+## Run locally
 
+**Prerequisites:** Node.js 18+ (recommended 20+)
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+
+```bash
+npm install
+```
+
+2. Start the dev server:
+
+```bash
+npm run dev
+```
+
+Default: `http://localhost:3000`
+
+## Build & preview
+
+```bash
+npm run build
+npm run preview
+```
+
+## Environment variables
+
+This repo keeps a `GEMINI_API_KEY` injection slot (see `vite.config.ts`). If you later wire AI/API features, create `.env.local`:
+
+```bash
+GEMINI_API_KEY=YOUR_KEY
+```
+
+> The landing page UI itself does not require this variable.
+
+## Project structure (key files)
+
+```
+body/
+  App.tsx
+  constants.ts
+  types.ts
+  index.html
+  index.css
+  components/
+    Navbar.tsx
+    Terminal.tsx
+    Features.tsx
+    HowItWorks.tsx
+    Moat.tsx
+    Roadmap.tsx
+    FAQ.tsx
+    CTA.tsx
+    Footer.tsx
+    Button.tsx
+    SectionHeading.tsx
+  assets/
+    degotchi.webp
+```
+
+## Deployment
+
+- **Build command**: `npm run build`
+- **Output directory**: `dist/`

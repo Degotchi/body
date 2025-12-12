@@ -14,14 +14,17 @@ export const Footer: React.FC<FooterProps> = ({ t }) => {
         </p>
         
         <div className="flex gap-6">
-          <a href="#" className="text-gray-500 hover:text-degotchi-green transition-colors text-xl">
+          <a href={t.links.twitter} className="text-gray-500 hover:text-degotchi-green transition-colors text-xl" aria-label="Twitter">
             <i className="fa-brands fa-twitter"></i>
           </a>
-          <a href="#" className="text-gray-500 hover:text-degotchi-purple transition-colors text-xl">
+          <a href={t.links.telegram} className="text-gray-500 hover:text-degotchi-purple transition-colors text-xl" aria-label="Telegram">
             <i className="fa-brands fa-telegram"></i>
           </a>
-          <a href="#" className="text-gray-500 hover:text-white transition-colors text-xl">
+          <a href={t.links.github} className="text-gray-500 hover:text-white transition-colors text-xl" aria-label="GitHub">
              <i className="fa-brands fa-github"></i>
+          </a>
+          <a href={t.links.email} className="text-gray-500 hover:text-degotchi-yellow transition-colors text-xl" aria-label="Email">
+             <i className="fa-solid fa-envelope"></i>
           </a>
         </div>
       </div>

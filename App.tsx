@@ -6,6 +6,12 @@ import { Footer } from './components/Footer';
 import { Button } from './components/Button';
 import { CONTENT } from './constants';
 import degotchi from './assets/degotchi.webp';
+import { SectionHeading } from './components/SectionHeading';
+import { HowItWorks } from './components/HowItWorks';
+import { Moat } from './components/Moat';
+import { Roadmap } from './components/Roadmap';
+import { FAQ } from './components/FAQ';
+import { CTA } from './components/CTA';
 
 const App: React.FC = () => {
   const t = CONTENT;
@@ -23,7 +29,7 @@ const App: React.FC = () => {
       <main className="relative z-10 pt-32 pb-12 flex flex-col items-center">
         
         {/* Hero Section */}
-        <div className="container mx-auto px-6 text-center max-w-4xl">
+        <section className="container mx-auto px-6 text-center max-w-5xl">
           
           {/* Pet Visual - Using degotchi.png */}
           <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-8 relative group">
@@ -50,18 +56,75 @@ const App: React.FC = () => {
             {t.hero.subtitle}
           </p>
 
-          <div className="flex justify-center">
-             <Button>{t.hero.cta}</Button>
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {t.hero.badges.map((b, i) => (
+              <span
+                key={i}
+                className="font-mono text-xs text-gray-300 border border-degotchi-dim bg-degotchi-panel/60 px-3 py-1"
+              >
+                {b}
+              </span>
+            ))}
           </div>
-        </div>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+             <Button onClick={() => window.open('#early-access', '_self')}>{t.hero.primaryCta}</Button>
+             <Button variant="outline" onClick={() => window.open('#how', '_self')}>{t.hero.secondaryCta}</Button>
+          </div>
+        </section>
 
         {/* Terminal Section */}
         <div className="w-full px-6">
           <Terminal t={t.terminal} />
         </div>
 
+        {/* Story Section */}
+        <section className="w-full max-w-6xl mx-auto px-6 py-20" id="story">
+          <SectionHeading eyebrow={t.story.eyebrow} title={t.story.title} />
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div className="space-y-4">
+              {t.story.paragraphs.map((p, i) => (
+                <p key={i} className="font-mono text-gray-400 text-sm md:text-base leading-relaxed">
+                  {p}
+                </p>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 gap-4">
+              {t.story.highlights.map((h, i) => (
+                <div key={i} className="bg-degotchi-dim border border-degotchi-panel p-6">
+                  <div className="font-pixel text-white text-xs md:text-sm leading-relaxed">
+                    {h.title}
+                  </div>
+                  <div className="font-mono text-gray-400 text-sm leading-relaxed mt-3">
+                    {h.desc}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <HowItWorks t={t.howItWorks} />
+
         {/* Features Section */}
         <Features t={t.features} />
+
+        {/* Moat */}
+        <Moat t={t.moat} />
+
+        {/* Roadmap */}
+        <Roadmap t={t.roadmap} />
+
+        {/* FAQ */}
+        <FAQ t={t.faq} />
+
+        {/* CTA */}
+        <div id="early-access" className="w-full">
+          <CTA t={t.cta} />
+        </div>
 
       </main>
 

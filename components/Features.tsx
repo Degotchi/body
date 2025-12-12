@@ -1,36 +1,18 @@
 import React from 'react';
 import { Translations } from '../types';
+import { SectionHeading } from './SectionHeading';
 
 interface FeaturesProps {
   t: Translations['features'];
 }
 
 export const Features: React.FC<FeaturesProps> = ({ t }) => {
-  const features = [
-    {
-      icon: "fa-brain",
-      title: t.brainTitle,
-      desc: t.brainDesc,
-      color: "border-degotchi-purple text-degotchi-purple"
-    },
-    {
-      icon: "fa-bolt",
-      title: t.bodyTitle,
-      desc: t.bodyDesc,
-      color: "border-degotchi-green text-degotchi-green"
-    },
-    {
-      icon: "fa-lock",
-      title: t.leashTitle,
-      desc: t.leashDesc,
-      color: "border-degotchi-yellow text-degotchi-yellow"
-    }
-  ];
-
   return (
-    <div className="w-full max-w-6xl mx-auto px-6 py-20">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {features.map((f, i) => (
+    <section className="w-full max-w-6xl mx-auto px-6 py-20" id="features">
+      <SectionHeading eyebrow={t.eyebrow} title={t.title} subtitle={t.subtitle} />
+
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {t.architecture.map((f, i) => (
           <div 
             key={i} 
             className={`group bg-degotchi-dim border-2 ${f.color} p-8 relative hover:-translate-y-2 transition-transform duration-300`}
@@ -52,6 +34,20 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
           </div>
         ))}
       </div>
-    </div>
+
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {t.bullets.map((b, i) => (
+          <div key={i} className="bg-degotchi-dark border border-degotchi-dim p-5 flex gap-4">
+            <div className="text-degotchi-green text-lg mt-0.5">
+              <i className={`fa-solid ${b.icon}`}></i>
+            </div>
+            <div>
+              <div className="font-pixel text-white text-xs leading-relaxed">{b.title}</div>
+              <div className="font-mono text-gray-400 text-sm leading-relaxed mt-2">{b.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };

@@ -24,7 +24,7 @@ export const Terminal: React.FC<TerminalProps> = ({ t }) => {
         id: Date.now(),
         timestamp: new Date().toLocaleTimeString(),
         message: randomMsg.text,
-        type: randomMsg.type as any
+        type: randomMsg.type
       };
 
       setLogs(prev => {
