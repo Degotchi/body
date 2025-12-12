@@ -1,0 +1,40 @@
+name: Deploy Frontend to VPS
+
+on:
+  push:
+    branches:
+      - main  #or master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. fetch codes
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. install node.js env
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. run build for dist folder
+        # WRRN params : CI=false  
+      - name: Build Project
+        run: CI=false npm run build
+
+      # 5. cp dist to VPS (use scp-action)
+      - name: Deploy to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/*"   
+          target: "/root/degotchi/frontend_site" 
+          strip_components: 1 # !!! ONLY  'dist' floder

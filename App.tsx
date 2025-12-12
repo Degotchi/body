@@ -5,7 +5,7 @@ import { Features } from './components/Features';
 import { Footer } from './components/Footer';
 import { Button } from './components/Button';
 import { CONTENT } from './constants';
-import degotchi from './assets/degotchi.png';
+import degotchi from './assets/degotchi.webp';
 
 const App: React.FC = () => {
   const t = CONTENT;
